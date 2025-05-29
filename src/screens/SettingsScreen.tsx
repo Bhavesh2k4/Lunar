@@ -22,7 +22,12 @@ import * as FileSystem from 'expo-file-system';
 import * as Sharing from 'expo-sharing';
 import * as DocumentPicker from 'expo-document-picker';
 import { theme } from '../styles/theme';
-
+//  <SettingsItem
+          //  emoji="📱"
+          //  title="Configure Widgets"
+          //  subtitle="Set up home screen widgets for quick tracking"
+          //  onPress={() => navigation.navigate('WidgetConfig')}
+          //  />
 interface SettingsScreenProps {
   navigation: any;
 }
@@ -198,45 +203,35 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
 
   // Share app
   const handleShareApp = async () => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+  
+  try {
+    const message = `🌙 Discover Lunar Habit Tracker 🌟\n\nI'm using this beautiful app to build better habits and track my personal growth. \n\nThe clean design and thoughtful features make habit-building enjoyable and sustainable.`;
     
-    try {
-      const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.yourapp.lunar'; // Replace with your app URL
-      const appStoreUrl = 'https://apps.apple.com/app/your-app-id'; // Replace with your iOS app URL
-      
-      const shareUrl = Platform.OS === 'ios' ? appStoreUrl : playStoreUrl;
-      const message = `Check out Lunar Habit Tracker! 🌟 Build better habits with this clean and motivating app: ${shareUrl}`;
-      
-      await Share.share({
-        message: message,
-        url: shareUrl,
-        title: 'Lunar Habit Tracker',
-      });
-    } catch (error) {
-      console.error('Share error:', error);
-    }
-  };
+    await Share.share({
+      message: message,
+      title: 'Lunar Habit Tracker',
+    });
+  } catch (error) {
+    console.error('Share error:', error);
+    Alert.alert("Couldn't share", "There was an error sharing Lunar. Please try again.");
+  }
+};
 
   // Review app
   const handleReviewApp = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     
     Alert.alert(
-      'Review Lunar 🌟',
-      'Your review helps other people discover Lunar and motivates us to keep improving!',
+      '✨ Thank You for Using Lunar ✨',
+      'We appreciate you being part of our community!\n\nIf you enjoy using Lunar, please consider leaving us a review when you have time.',
       [
-        { text: 'Maybe Later', style: 'cancel' },
-        {
-          text: '⭐ Review Now',
-          onPress: () => {
-            const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.yourapp.lunar'; // Replace
-            const appStoreUrl = 'https://apps.apple.com/app/your-app-id'; // Replace
-            
-            const reviewUrl = Platform.OS === 'ios' ? appStoreUrl : playStoreUrl;
-            Linking.openURL(reviewUrl);
-          }
+        { 
+          text: 'Close', 
+          style: 'default' 
         }
-      ]
+      ],
+      { cancelable: true }
     );
   };
 
@@ -334,11 +329,12 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
               loading={isImporting}
               accent={true}
             />
+            
             <SettingsItem
-            emoji="📱"
-            title="Configure Widgets"
-            subtitle="Set up home screen widgets for quick tracking"
-            onPress={() => navigation.navigate('WidgetConfig')}
+              emoji="📱"
+              title="Widgets (Coming Soon)"
+              subtitle="Home screen widgets will be available in a future update"
+              onPress={() => Alert.alert('Coming Soon!', 'Widget support will be added in a future update. Stay tuned! 🚀')}
             />
           </View>
 

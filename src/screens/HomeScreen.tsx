@@ -59,6 +59,23 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
     }
   };
 
+  // ✨ NEW: Helper function to check if habit should be shown on selected date
+  const isHabitValidForDate = (habit: any, checkDate: Date) => {
+    const habitCreatedDate = new Date(habit.createdAt);
+    
+    // Compare dates without time (only year, month, day)
+    const checkDateOnly = new Date(checkDate.getFullYear(), checkDate.getMonth(), checkDate.getDate());
+    const createdDateOnly = new Date(habitCreatedDate.getFullYear(), habitCreatedDate.getMonth(), habitCreatedDate.getDate());
+    
+    // Habit should only appear on or after its creation date
+    return checkDateOnly >= createdDateOnly;
+  };
+
+  // ✨ NEW: Get habits that are valid for the selected date
+  const getValidHabitsForDate = (checkDate: Date) => {
+    return habits.filter(habit => isHabitValidForDate(habit, checkDate));
+  };
+
   const isHabitCompletedOnDate = (habit: any, date: string) => {
     return habit.completedDates.includes(date);
   };
@@ -153,6 +170,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     navigation.navigate('Settings');
   };
+
+  // ✨ UPDATED: Get valid habits for selected date
+  const validHabitsForSelectedDate = getValidHabitsForDate(selectedDate);
 
   if (habits.length === 0) {
     return (
@@ -255,7 +275,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={16}
         >
-          {habits.map((habit) => (
+          {/* ✨ UPDATED: Only show habits that are valid for the selected date */}
+          {validHabitsForSelectedDate.map((habit) => (
             <HabitCard
               key={habit.id}
               habit={habit}
@@ -272,8 +293,19 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
             />
           ))}
           
+          {/* ✨ UPDATED: Show different messages based on valid habits for selected date */}
           <View style={styles.pastDateInfo}>
-            {isToday(selectedDate) ? (
+            {validHabitsForSelectedDate.length === 0 ? (
+              <>
+                <Text style={styles.pastDateText}>
+                  📅 No habits were active on this date
+                </Text>
+                <Text style={styles.pastDateText}></Text>
+                <Text style={styles.pastDateText}>
+                  Habits only appear from their creation date onwards
+                </Text>
+              </>
+            ) : isToday(selectedDate) ? (
               <>
                 <Text style={styles.pastDateText}>
                   🌟 Make today count

@@ -1,7 +1,9 @@
 {
   "expo": {
-    "name": "HabitTracker",
-    "slug": "HabitTracker",
+    "name": "Lunar Habit",
+    "slug": "Lunar Habit",
+    "owner": "bhavesh2k4",
+    "privacy": "public",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
