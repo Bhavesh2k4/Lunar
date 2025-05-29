@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Habit } from '../types/habit';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface HabitState {
   habits: Habit[];

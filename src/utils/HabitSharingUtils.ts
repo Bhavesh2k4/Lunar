@@ -2,7 +2,6 @@
 import {
   Alert,
   Share,
-  Platform,
 } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import * as FileSystem from 'expo-file-system';
