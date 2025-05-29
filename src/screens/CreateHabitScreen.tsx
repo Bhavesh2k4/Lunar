@@ -20,12 +20,12 @@ interface CreateHabitScreenProps {
 }
 
 const PREDEFINED_HABITS = [
+  { name: 'Learn Something New', emoji: '📚' },
+  { name: 'Budget Tracking', emoji: '💰' },
   { name: 'Gym Workout', emoji: '🏋️' },
   { name: '7h Sleep', emoji: '😴' },
   { name: '10k Steps', emoji: '👟' },
-  { name: 'Make Bed', emoji: '🛏️' },
-  { name: 'Book Progress', emoji: '📚' },
-  { name: 'Gratitude Journal', emoji: '📔' },
+  { name: 'No Sugar', emoji: '🍫' },
   { name: '5m Meditation', emoji: '🧘' },
   { name: 'Social Media Limit', emoji: '📱' },
 ];
@@ -97,12 +97,12 @@ export const CreateHabitScreen: React.FC<CreateHabitScreenProps> = ({ navigation
               <View style={styles.predefinedInfo}>
                 <Text style={styles.predefinedName}>{habit.name}</Text>
                 <Text style={styles.predefinedDesc}>
+                  {habit.name === 'Learn Something New' && 'Feed your curious mind'}
+                  {habit.name === 'Budget Tracking' && 'Master your money mindset'} 
                   {habit.name === 'Gym Workout' && 'Crush a gym session'}
                   {habit.name === '7h Sleep' && 'Rest and recharge fully'}
                   {habit.name === '10k Steps' && 'Walk your way to wellness'}
-                  {habit.name === 'Make Bed' && 'Start your day with order'}
-                  {habit.name === 'Book Progress' && 'Read a few pages daily'}
-                  {habit.name === 'Gratitude Journal' && 'Reflect on what matters'}
+                  {habit.name === 'No Sugar' && 'Choose health over cravings'}
                   {habit.name === '5m Meditation' && 'Find your inner peace'}
                   {habit.name === 'Social Media Limit' && 'Mindful digital usage'}
                 </Text>
