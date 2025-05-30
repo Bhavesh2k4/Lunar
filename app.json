@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Lunar Habit",
+    "name": "Lunar Habit Tracker",
     "slug": "lunar-habit",
     "owner": "bhavesh2k4",
     "privacy": "public",
@@ -29,7 +29,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "107f3c91-bfcb-4dd4-b662-6c2d0d35429e"
+        "projectId": "fa0e8c4c-0e3e-42fe-a219-3968d286ce1f"
       }
     }
   }

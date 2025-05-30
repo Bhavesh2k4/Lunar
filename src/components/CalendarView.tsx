@@ -83,7 +83,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
         </View>
         
         <View style={styles.daysRow}>
-          {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((day, index) => (
+          {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, index) => (
             <Text
               key={index}
               style={[styles.dayLabel, { color: theme.colors.secondary }]}
