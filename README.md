@@ -70,7 +70,7 @@ A beautiful, intuitive habit tracking app built with React Native and Expo. Luna
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/lunar-habit-tracker.git
+   git clone https://github.com/Bhavesh2k4/Lunar
    cd lunar-habit-tracker
    ```
 
